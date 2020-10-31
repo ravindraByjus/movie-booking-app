@@ -1,0 +1,9 @@
+main {
+  height: 100vh;
+}
+
+.footer {
+  margin-top: 60px;
+  position: fixed;
+  bottom: 0;
+}
