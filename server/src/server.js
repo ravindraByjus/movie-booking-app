@@ -22,7 +22,11 @@ db.once('open', async () => {
     app.use(cors());
     app.use(bodyParser.json());
     app.use('/',routes())
-    
+
+    if(process.env.NODE_ENV === 'production') 
+    {
+      app.use(express.static('../../client/build'))
+    }
     
     app.listen(port, () => {
         console.log(`Example app listening at http://localhost:${port}`);
