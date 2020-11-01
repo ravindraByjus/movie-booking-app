@@ -6,6 +6,7 @@ import { createBrowserHistory } from "history";
 import App from "./App";
 import BookingPage from "./components/BookingPage";
 import Header from "./components/Header";
+import AddMovie from './components/AddMovie'
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
@@ -19,6 +20,9 @@ ReactDOM.render(
       <Header />
       <main>
         <Switch>
+          <Route path="/add-movie">
+            <AddMovie />
+          </Route>
           <Route path="/booking-page/:movieId">
             <BookingPage />
           </Route>

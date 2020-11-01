@@ -9,7 +9,6 @@ import {
   CardTitle,
   Row,
   Col,
-  Button
 } from "reactstrap";
 import SearchSection from "./components/SearchSection";
 
@@ -41,8 +40,6 @@ export default function App() {
       .catch((error) => console.log("error", error));
   }
 
-  function onClick4Booking(imdbID) {}
-
   return (
     <Container style={{ marginTop: "60px" }}>
       <SearchSection
@@ -56,7 +53,7 @@ export default function App() {
           {data && data.length &&
             data.map((movie) => {
               return (
-                <Col md={3} key={movie.imdbID}>
+                <Col md={3} key={movie.imdbId}>
                   <Card>
                     <CardImg
                       top
@@ -66,7 +63,7 @@ export default function App() {
                     />
                     <CardBody className="bg-secondary">
                       <CardTitle>{movie.title}</CardTitle>
-                      <CardText>{movie.year}</CardText>
+                      <CardText>{movie.year}-{movie.type}</CardText>
                       <Link
                         to={`/booking-page/${movie.imdbId}`}
                         className="btn btn-primary"

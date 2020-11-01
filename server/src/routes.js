@@ -12,16 +12,24 @@ module.exports = function(){
     });
     
     router.post('/addMovie', async(req,res) => {
-        const {title,year,poster,imdbId} = req.body;
+        const {title,year,poster,imdbId,type} = req.body;
+        const flag = await Movie.find({imdbId});
 
-        const movie = new Movie({ 
-            title,
-            year,
-            poster,
-            imdbId
-        });
-        await movie.save();
-        res.json({message:"Movie added successfully"});
+        if(!flag){
+            const movie = new Movie({ 
+                title,
+                year,
+                poster,
+                imdbId,
+                type
+            });
+            await movie.save();
+            res.json({message:`Movie added successfully`});
+        }
+        else {
+            res.json({message:`Movie already exists`})
+        }
+        
     });
 
     return router;

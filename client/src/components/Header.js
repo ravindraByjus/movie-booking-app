@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText
-} from "reactstrap";
+import { Navbar, NavbarToggler} from "reactstrap";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
