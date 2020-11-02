@@ -6,7 +6,9 @@ import { createBrowserHistory } from "history";
 import App from "./App";
 import BookingPage from "./components/BookingPage";
 import Header from "./components/Header";
-import AddMovie from './components/AddMovie'
+import AddMovie from './components/AddMovie';
+import UpdateMovie from './components/UpdateMovie'
+import DeleteMovie from './components/DeleteMovie'
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.css";
@@ -25,6 +27,12 @@ ReactDOM.render(
           </Route>
           <Route path="/booking-page/:movieId">
             <BookingPage />
+          </Route>
+          <Route path="/update-movie/:movieId">
+            <UpdateMovie />
+          </Route>
+          <Route path="/delete-movie/:movieId">
+            <DeleteMovie />
           </Route>
           <Route path="/">
             <App />

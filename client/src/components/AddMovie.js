@@ -4,13 +4,43 @@ import { Input, Label, Container, Button } from 'reactstrap';
 import axios from 'axios';
 
 export default function AddMovie() {
-    const [title, setTitle] = useState('')
-    const [year, setYear] = useState('')
-    const [poster, setPoster] = useState('')
-    const [imdbId, setId] = useState('')
-    const [type, setType] = useState('')
+    const [title, setTitle] = useState('');
+    const [year, setYear] = useState('');
+    const [poster, setPoster] = useState('');
+    const [imdbId, setId] = useState('');
+    const [type, setType] = useState('');
+    const [errorMsg, setErrorMsg] = useState({});
 
     const history = useHistory();
+
+    function isValid() {
+        let error = false;
+        let errorMsg = {}
+
+        if (imdbId.slice(0,2) !== 'tt' && imdbId.length !== 9) {
+            error = true; 
+            errorMsg.imdbId = "Invalid movie Id";
+            
+        }
+        if (title.length === 0) {
+            error = true; 
+            errorMsg.title = "Please enter movie title";
+        }
+        if (year.length !== 4) {
+            error = true; 
+            errorMsg.year = "Please enter a valid year";
+        }
+
+        if(error){
+            setErrorMsg(errorMsg)
+        } 
+        else {
+            onClickInsert();
+        }
+        
+
+    }
+
 
     async function onClickInsert() {
         try{
@@ -27,8 +57,6 @@ export default function AddMovie() {
         catch(error) {
             console.error(error);
         }
-                            
-
     }
 
     return(
@@ -37,20 +65,23 @@ export default function AddMovie() {
                 <Label>Enter the imdbId</Label>
                 <Input
                     placeholder='Enter the Id'
-                    onChange={e => { setId(e.target.value) }}
+                    onChange={e => { setId(e.target.value)}}
                 />
+                <span style={{color: 'red'}}>{errorMsg.imdbId}</span>
                 <br />
                 <Label>Enter the Movie Name</Label>
                 <Input
                     placeholder='Enter movie name'
                     onChange={e => { setTitle(e.target.value) }}
                 />
+                <span style={{color: 'red'}}>{errorMsg.title}</span>
                 <br />
                 <Label>Enter the Year</Label>
                 <Input
                     placeholder='Enter the year'
                     onChange={e => { setYear(e.target.value) }}
                 />
+                <span style={{color: 'red'}}>{errorMsg.year}</span>
                 <br />
                 <Label>Enter the Type</Label>
                 <Input
@@ -65,7 +96,7 @@ export default function AddMovie() {
                 />
                 <br />
 
-                <Button color='success' onClick={onClickInsert}>
+                <Button color='success' onClick={isValid}>
                     Insert Data
                 </Button>{' '}
                 <Button

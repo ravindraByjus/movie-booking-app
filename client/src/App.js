@@ -9,8 +9,11 @@ import {
   CardTitle,
   Row,
   Col,
+  Button,
 } from "reactstrap";
 import SearchSection from "./components/SearchSection";
+import DeleteMovie from './components/DeleteMovie';
+import UpdateMovie from './components/UpdateMovie'
 
 export default function App() {
   const [data, setData] = useState({});
@@ -66,10 +69,17 @@ export default function App() {
                       <CardText>{movie.year}-{movie.type}</CardText>
                       <Link
                         to={`/booking-page/${movie.imdbId}`}
-                        className="btn btn-primary"
+                        className="btn btn-success"
                       >
                         Book Now
                       </Link>
+                      <DeleteMovie 
+                      movieId={movie.imdbId}
+                      movieTitle={movie.title}/>
+
+                      <UpdateMovie 
+                      imdbId={movie.imdbId}
+                      />
                     </CardBody>
                   </Card>
                 </Col>
